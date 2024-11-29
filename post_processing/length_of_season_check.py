@@ -3,22 +3,21 @@ import numpy as np
 import pandas as pd
 import rasterio
 
-os.chdir('/media/nas3/Andreu/WC_CropCalendars')
+pre_path = '/media/nas3/Andreu/'
+path = pre_path + '/prod/outputs/wc_sos/s1_sos_50km.tif'
+path2 = pre_path + '/prod/outputs/wc_eos/s1_eos_50km.tif'
+path3 = pre_path + '/prod/outputs/sc_sos/s2_sos_50km.tif'
+path4 = pre_path + '/prod/outputs/sc_eos/s2_eos_50km.tif'
 
-path = '/prod/outputs/wc_sos/s1_sos_50km.tif'
-path2 = '/prod/outputs/wc_eos/s1_eos_50km.tif'
-path3 = '/prod/outputs/sc_sos/s2_sos_50km.tif'
-path4 = '/prod/outputs/sc_eos/s2_eos_50km.tif'
+los_path_wc = pre_path + '/post_processing/length_of_season_check/los_wc.tif'
+los_path_sc = pre_path + '/post_processing/length_of_season_check/los_sc.tif'
+mask_los_path_wc = pre_path + '/post_processing/length_of_season_check/mask_los_wc.tif'
+mask_los_path_sc = pre_path + '/post_processing/length_of_season_check/mask_los_sc.tif'
 
-los_path_wc = '/post_processing/length_of_season_check/los_wc.tif'
-los_path_sc = '/post_processing/length_of_season_check/los_sc.tif'
-mask_los_path_wc = '/post_processing/length_of_season_check/mask_los_wc.tif'
-mask_los_path_sc = '/post_processing/length_of_season_check/mask_los_sc.tif'
-
-path_wc_sos_corrected = '/post_processing/length_of_season_check/wc_sos_los_corrected.tif'
-path_wc_eos_corrected = '/post_processing/length_of_season_check/wc_eos_los_corrected.tif'
-path_sc_sos_corrected = '/post_processing/length_of_season_check/sc_sos_los_corrected.tif'
-path_sc_eos_corrected = '/post_processing/length_of_season_check/sc_eos_los_corrected.tif'
+path_wc_sos_corrected = pre_path + '/post_processing/length_of_season_check/wc_sos_los_corrected.tif'
+path_wc_eos_corrected = pre_path + '/post_processing/length_of_season_check/wc_eos_los_corrected.tif'
+path_sc_sos_corrected = pre_path + '/post_processing/length_of_season_check/sc_sos_los_corrected.tif'
+path_sc_eos_corrected = pre_path + '/post_processing/length_of_season_check/sc_eos_los_corrected.tif'
 
 # Decide if you want to generate a new series of crop calendars with cleaned LOS or not
 # The next steps of post-processing assume destroy = True but manual post-processing on this stage can be done
