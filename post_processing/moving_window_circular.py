@@ -3,7 +3,7 @@ import numpy as np
 import rasterio
 import scipy.ndimage as scimg
 
-os.chdir('/media/nas3/Andreu/WC_CropCalendars')
+pre_path  = '/media/nas3/Andreu/'
 
 def toCircular(values, maxvalue = 365, rad = True):
     circvalue = (values*360)/maxvalue
@@ -65,15 +65,15 @@ def circularMean(circ_data, scal_max = 365, narm = True, rad=False, percentile =
 
 if __name__ == "__main__":
 
-    path_wc_sos_filled = '/post_processing/filling_gaps/wc_sos_los_filled.tif'
-    path_wc_eos_filled = '/post_processing/filling_gaps/wc_eos_los_filled.tif'
-    path_sc_sos_filled = '/post_processing/filling_gaps/sc_sos_los_filled.tif'
-    path_sc_eos_filled = '/post_processing/filling_gaps/sc_eos_los_filled.tif'
+    path_wc_sos_filled = pre_path + '/post_processing/filling_gaps/wc_sos_los_filled.tif'
+    path_wc_eos_filled = pre_path + '/post_processing/filling_gaps/wc_eos_los_filled.tif'
+    path_sc_sos_filled = pre_path + '/post_processing/filling_gaps/sc_sos_los_filled.tif'
+    path_sc_eos_filled = pre_path + '/post_processing/filling_gaps/sc_eos_los_filled.tif'
 
-    path_wc_sos_3x3 = '/post_processing/moving_window/wc_sos_los_3x3.tif'
-    path_wc_eos_3x3 = '/post_processing/moving_window/wc_eos_los_3x3.tif'
-    path_sc_sos_3x3 = '/post_processing/moving_window/sc_sos_los_3x3.tif'
-    path_sc_eos_3x3 = '/post_processing/moving_window/sc_eos_los_3x3.tif'
+    path_wc_sos_3x3 = pre_path + '/post_processing/moving_window/wc_sos_los_3x3.tif'
+    path_wc_eos_3x3 = pre_path + '/post_processing/moving_window/wc_eos_los_3x3.tif'
+    path_sc_sos_3x3 = pre_path + '/post_processing/moving_window/sc_sos_los_3x3.tif'
+    path_sc_eos_3x3 = pre_path + '/post_processing/moving_window/sc_eos_los_3x3.tif'
 
     # Read files with filled borders
     with rasterio.open(path_wc_sos_filled) as src:
