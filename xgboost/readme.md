@@ -4,5 +4,6 @@
 - 'SEASON_MOMENT' should be 'wc_sos', 'wc_eos', 'sc_sos' or 'sc_eos'.
 - 'params_sin' and 'params_cos' permit modifying the parameters of the XGBoost model.
 - 'sample_weight' defines the weight given to 'Phase I', 'End user' and 'Visual inspect' points.
-- 'predictors' permit modify which climatic and geographical data should be inputed into the model.
+- 'predictors' permit modifying which climatic and geographical data should be inputed into the model.
+- 'number' let you decide how many climatic and geographical data should be inputed into the model.
 - The rest of the code should work fine without extra modifications.
