@@ -267,7 +267,7 @@ desired_order = ['Africa', 'North America', 'South America', 'Central America', 
 sorted_handles_labels = sorted(zip(handles, labels), key=lambda x: desired_order.index(x[1]))
 sorted_handles, sorted_labels = zip(*sorted_handles_labels)
 plt.legend(sorted_handles, sorted_labels, title="Continent", loc='lower right')
-plt.savefig(os.path.join(template_results, "r2validation-s2-sos.png"))
+plt.savefig(os.path.join(results_path, "r2validation-s2-sos.png"))
 
 
 # GETTING FEATURES OF THE WHOLE PLANET
@@ -334,7 +334,7 @@ with rasterio.open(template_path) as template:
         'nodata': 0
     })
     # profile.update(dtype=np.int16, nodata=0)
-    with rasterio.open(os.path.join(template_results, "s2_sos_50km.tif"), "w", **profile) as dst:
+    with rasterio.open(os.path.join(results_path, "s2_sos_50km.tif"), "w", **profile) as dst:
         reproject(
             source=finalimg,  # Read the first (and only) band
             destination=rasterio.band(dst, 1),  # Write to the same band in the output
@@ -344,7 +344,7 @@ with rasterio.open(template_path) as template:
             dst_crs=target_crs,
             resampling=Resampling.nearest  # Use 'nearest' for categorical data
         )
-    with rasterio.open(os.path.join(template_results, "s2_sos_masked.tif"), "w", **profile) as dst:
+    with rasterio.open(os.path.join(results_path, "s2_sos_masked.tif"), "w", **profile) as dst:
         reproject(
             source=finalimgmasked,  # Read the first (and only) band
             destination=rasterio.band(dst, 1),  # Write to the same band in the output
@@ -354,7 +354,7 @@ with rasterio.open(template_path) as template:
             dst_crs=target_crs,
             resampling=Resampling.nearest  # Use 'nearest' for categorical data
         )
-    with rasterio.open(os.path.join(template_results, "s2_sos_worldmasked.tif"), "w", **profile) as dst:
+    with rasterio.open(os.path.join(results_path, "s2_sos_worldmasked.tif"), "w", **profile) as dst:
         reproject(
             source=finalimgworldmasked,  # Read the first (and only) band
             destination=rasterio.band(dst, 1),  # Write to the same band in the output
