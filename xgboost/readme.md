@@ -1,8 +1,8 @@
-These are the python scripts to run the XGBoost model and generate the global Crop Calendars at 0.5º resolution.
-At the begging there are all the paths needed for the code to be executed.
-'file_path', 'results_path' and 'necessary_path' should be changed in order to point to the folders '/expanded_datasets', 'prod/outputs/SEASON_MOMENT' and '/prod/inputs/necessary', respectively.
-'SEASON_MOMENT' should be 'wc_sos', 'wc_eos', 'sc_sos' or 'sc_eos'.
-'params_sin' and 'params_cos' permit modifying the parameters of the XGBoost model.
-'sample_weight' defines the weight given to 'Phase I', 'End user' and 'Visual inspect' points.
-'predictors' permit modify which climatic and geographical data should be inputed into the model.
-The rest of the code should work fine without extra modifications.
+- These are the python scripts to run the XGBoost model and generate the global Crop Calendars at 0.5º resolution.
+- At the begging there are all the paths needed for the code to be executed.
+- 'file_path', 'results_path' and 'necessary_path' should be changed in order to point to the folders '/expanded_datasets', 'prod/outputs/SEASON_MOMENT' and '/prod/inputs/necessary', respectively.
+- 'SEASON_MOMENT' should be 'wc_sos', 'wc_eos', 'sc_sos' or 'sc_eos'.
+- 'params_sin' and 'params_cos' permit modifying the parameters of the XGBoost model.
+- 'sample_weight' defines the weight given to 'Phase I', 'End user' and 'Visual inspect' points.
+- 'predictors' permit modify which climatic and geographical data should be inputed into the model.
+- The rest of the code should work fine without extra modifications.
