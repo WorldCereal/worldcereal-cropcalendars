@@ -52,10 +52,10 @@ with rasterio.open(los_path_wc, 'w', **profile) as dst:
 # 1 for problems, 0 for correct length
 mask_los_wc = np.zeros([los_wc.shape[0], los_wc.shape[1]])
 mask_los_wc[los_wc < 75] = 1
-mask_los_wc[los_wc > 300] = 1
+mask_los_wc[los_wc > 330] = 1
 mask_los_sc = np.zeros([los_sc.shape[0], los_sc.shape[1]])
 mask_los_sc[los_sc < 75] = 1
-mask_los_sc[los_sc > 300] = 1
+mask_los_sc[los_sc > 330] = 1
 
 # Write the masks
 with rasterio.open(mask_los_path_wc, 'w', **profile) as dst:
