@@ -78,7 +78,7 @@ sample_weight[data['Source']=='End user'] = 4
 sample_weight[data['Source']=='Visual inspect'] = 0.5
 # sample_weight = np.random.rand(len(data))
 # Removing unncessary features
-predictors = predictors.columns.drop({'Source'})
+predictors = predictors.drop({'Source'})
 
 
 '''Necessary for later'''
