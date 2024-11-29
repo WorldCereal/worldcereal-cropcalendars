@@ -1,4 +1,4 @@
-- This are the post-processing scripts available at the moment to fix and smooth the crop calendars.
+- These are the post-processing scripts available at the moment to fix and smooth the crop calendars.
 - The natural order of execution should be: 'length_of_season_check.py', then 'fill_borders.py' ane finally 'moving_window_circular.py'.
 - 'length_of_season_check.py' search all the pixels where the season is too short or long and then generates a mask and a new version without this problematic pixels.
 - If unchanged, 'length_of_season_check.py' considers < 60 days and > 300 days problematic extent. 
