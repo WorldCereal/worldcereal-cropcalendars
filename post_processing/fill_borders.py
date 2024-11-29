@@ -3,7 +3,7 @@ import numpy as np
 import rasterio
 from scipy.spatial import KDTree
 
-os.chdir('/media/nas3/Andreu/WC_CropCalendars')
+pre_path = '/media/nas3/Andreu/'
 
 def fill_with_nearest_within_distance(arr, max_distance=6):
     # Get the 2D indices of the non-NaN values
@@ -22,15 +22,15 @@ def fill_with_nearest_within_distance(arr, max_distance=6):
 
 if __name__ == "__main__":
 
-    path_wc_sos_corrected = '/post_processing/length_of_season_check/wc_sos_los_corrected.tif'
-    path_wc_eos_corrected = '/post_processing/length_of_season_check/wc_eos_los_corrected.tif'
-    path_sc_sos_corrected = '/post_processing/length_of_season_check/sc_sos_los_corrected.tif'
-    path_sc_eos_corrected = '/post_processing/length_of_season_check/sc_eos_los_corrected.tif'
+    path_wc_sos_corrected = pre_path + '/post_processing/length_of_season_check/wc_sos_los_corrected.tif'
+    path_wc_eos_corrected = pre_path + '/post_processing/length_of_season_check/wc_eos_los_corrected.tif'
+    path_sc_sos_corrected = pre_path + '/post_processing/length_of_season_check/sc_sos_los_corrected.tif'
+    path_sc_eos_corrected = pre_path + '/post_processing/length_of_season_check/sc_eos_los_corrected.tif'
 
-    path_wc_sos_filled = '/post_processing/filling_gaps/wc_sos_los_filled.tif'
-    path_wc_eos_filled = '/post_processing/filling_gaps/wc_eos_los_filled.tif'
-    path_sc_sos_filled = '/post_processing/filling_gaps/sc_sos_los_filled.tif'
-    path_sc_eos_filled = '/post_processing/filling_gaps/sc_eos_los_filled.tif'
+    path_wc_sos_filled = pre_path + '/post_processing/filling_gaps/wc_sos_los_filled.tif'
+    path_wc_eos_filled = pre_path + '/post_processing/filling_gaps/wc_eos_los_filled.tif'
+    path_sc_sos_filled = pre_path + '/post_processing/filling_gaps/sc_sos_los_filled.tif'
+    path_sc_eos_filled = pre_path + '/post_processing/filling_gaps/sc_eos_los_filled.tif'
 
     # Read files with length of season problematic pixels deleted
     with rasterio.open(path_wc_sos_corrected) as src:
