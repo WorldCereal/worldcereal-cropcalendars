@@ -267,7 +267,7 @@ desired_order = ['Africa', 'North America', 'South America', 'Central America', 
 sorted_handles_labels = sorted(zip(handles, labels), key=lambda x: desired_order.index(x[1]))
 sorted_handles, sorted_labels = zip(*sorted_handles_labels)
 plt.legend(sorted_handles, sorted_labels, title="Continent", loc='lower right')
-plt.savefig(os.path.join(template_results, "r2validation-s1-eos.png"))
+plt.savefig(os.path.join(results_path, "r2validation-s1-eos.png"))
 
 
 # GETTING FEATURES OF THE WHOLE PLANET
