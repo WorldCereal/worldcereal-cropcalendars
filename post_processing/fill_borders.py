@@ -43,6 +43,11 @@ if __name__ == "__main__":
     with rasterio.open(path_sc_eos_corrected) as src:
         data4 = src.read(1)
 
+    data1 = data1.astype(np.float32)
+    data2 = data2.astype(np.float32)
+    data3 = data3.astype(np.float32)
+    data4 = data4.astype(np.float32)
+    
     data1[data1==0] = np.nan
     data2[data2==0] = np.nan
     data3[data3==0] = np.nan
@@ -53,6 +58,11 @@ if __name__ == "__main__":
     data2_filled = fill_with_nearest_within_distance(data2, max_distance=3)
     data3_filled = fill_with_nearest_within_distance(data3, max_distance=3)
     data4_filled = fill_with_nearest_within_distance(data4, max_distance=3)
+
+    data1 = data1.astype(np.int16)
+    data2 = data2.astype(np.int16)
+    data3 = data3.astype(np.int16)
+    data4 = data4.astype(np.int16)
 
     with rasterio.open(path_output, 'w', **profile) as dst:
         dst.write(data1_filled, 1)
