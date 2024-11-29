@@ -63,12 +63,13 @@ if __name__ == "__main__":
     data2 = data2.astype(np.int16)
     data3 = data3.astype(np.int16)
     data4 = data4.astype(np.int16)
-
-    with rasterio.open(path_output, 'w', **profile) as dst:
+    
+    with rasterio.open(path_wc_sos_filled, 'w', **profile) as dst:
         dst.write(data1_filled, 1)
-    with rasterio.open(path_output, 'w', **profile) as dst:
+    with rasterio.open(path_wc_eos_filled, 'w', **profile) as dst:
         dst.write(data2_filled, 1)
-    with rasterio.open(path_output, 'w', **profile) as dst:
+    with rasterio.open(path_sc_sos_filled, 'w', **profile) as dst:
         dst.write(data3_filled, 1)
-    with rasterio.open(path_output, 'w', **profile) as dst:
+    with rasterio.open(path_sc_eos_filled, 'w', **profile) as dst:
         dst.write(data4_filled, 1)
+        
