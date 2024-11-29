@@ -334,7 +334,7 @@ with rasterio.open(template_path) as template:
         'nodata': 0
     })
     # profile.update(dtype=np.int16, nodata=0)
-    with rasterio.open(os.path.join(template_results, "s1_sos_50km.tif"), "w", **profile) as dst:
+    with rasterio.open(os.path.join(results_path, "s1_sos_50km.tif"), "w", **profile) as dst:
         reproject(
             source=finalimg,  # Read the first (and only) band
             destination=rasterio.band(dst, 1),  # Write to the same band in the output
@@ -344,7 +344,7 @@ with rasterio.open(template_path) as template:
             dst_crs=target_crs,
             resampling=Resampling.nearest  # Use 'nearest' for categorical data
         )
-    with rasterio.open(os.path.join(template_results, "s1_sos_masked.tif"), "w", **profile) as dst:
+    with rasterio.open(os.path.join(results_path, "s1_sos_masked.tif"), "w", **profile) as dst:
         reproject(
             source=finalimgmasked,  # Read the first (and only) band
             destination=rasterio.band(dst, 1),  # Write to the same band in the output
@@ -354,7 +354,7 @@ with rasterio.open(template_path) as template:
             dst_crs=target_crs,
             resampling=Resampling.nearest  # Use 'nearest' for categorical data
         )
-    with rasterio.open(os.path.join(template_results, "s1_sos_worldmasked.tif"), "w", **profile) as dst:
+    with rasterio.open(os.path.join(results_path, "s1_sos_worldmasked.tif"), "w", **profile) as dst:
         reproject(
             source=finalimgworldmasked,  # Read the first (and only) band
             destination=rasterio.band(dst, 1),  # Write to the same band in the output
