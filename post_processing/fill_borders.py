@@ -59,6 +59,11 @@ if __name__ == "__main__":
     data3_filled = fill_with_nearest_within_distance(data3, max_distance=3)
     data4_filled = fill_with_nearest_within_distance(data4, max_distance=3)
 
+    data1[np.isnan(data1)] = 0
+    data2[np.isnan(data2)] = 0
+    data3[np.isnan(data3)] = 0
+    data4[np.isnan(data4)] = 0
+
     data1 = data1.astype(np.int16)
     data2 = data2.astype(np.int16)
     data3 = data3.astype(np.int16)
