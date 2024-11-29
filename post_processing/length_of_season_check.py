@@ -5,10 +5,10 @@ import rasterio
 
 os.chdir('/media/nas3/Andreu/WC_CropCalendars')
 
-path = '/prod/outputs/wc_sos/wc_sos_50km.tif'
-path2 = '/prod/outputs/wc_eos/wc_eos_50km.tif'
-path3 = '/prod/outputs/sc_sos/sc_sos_50km.tif'
-path4 = '/prod/outputs/sc_eos/sc_eos_50km.tif'
+path = '/prod/outputs/wc_sos/s1_sos_50km.tif'
+path2 = '/prod/outputs/wc_eos/s1_eos_50km.tif'
+path3 = '/prod/outputs/sc_sos/s2_sos_50km.tif'
+path4 = '/prod/outputs/sc_eos/s2_eos_50km.tif'
 
 los_path_wc = '/post_processing/length_of_season_check/los_wc.tif'
 los_path_sc = '/post_processing/length_of_season_check/los_sc.tif'
@@ -73,11 +73,11 @@ if destroy:
     with rasterio.open(path_wc_sos_corrected, 'w', **profile) as dst:
         dst.write(data1, 1)
     with rasterio.open(path_wc_eos_corrected, 'w', **profile) as dst:
-        dst.write(data2, 2)
+        dst.write(data2, 1)
     with rasterio.open(path_sc_sos_corrected, 'w', **profile) as dst:
         dst.write(data3, 1)
     with rasterio.open(path_sc_eos_corrected, 'w', **profile) as dst:
-        dst.write(data4, 2)
+        dst.write(data4, 1)
 
 
 
