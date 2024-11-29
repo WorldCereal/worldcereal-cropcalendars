@@ -260,7 +260,7 @@ plt.xlim(0, 366)
 plt.ylim(0, 366)
 plt.xlabel("Predicted (DOY)")
 plt.ylabel("Observed (DOY)")
-plt.title("Winter crops SOS validation")
+plt.title("Summer crops EOS validation")
 handles, labels = plt.gca().get_legend_handles_labels()
 desired_order = ['Africa', 'North America', 'South America', 'Central America', 'Asia', 'Europe', 'Oceania']
 # desired_order = ['Africa', 'North America', 'South America', 'Asia', 'Europe', 'Oceania']
