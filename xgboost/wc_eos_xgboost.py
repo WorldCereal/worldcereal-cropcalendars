@@ -64,7 +64,7 @@ data = data.dropna()
 data['target'] = data['target']*360/365
 data['target'] = np.deg2rad(data['target'])
 # Define the predictors (features for training the model)
-predictors = data.columns.drop({'algo', 'fid', 'indekso', 'target', 'x', 'y', 'Legacy', 'layer', 'path'})
+predictors = data.drop({'algo', 'fid', 'indekso', 'target', 'x', 'y', 'Legacy', 'layer', 'path'})
 # Define sin/cos datasets to predict
 sin_pred = data.copy()
 cos_pred = data.copy()
