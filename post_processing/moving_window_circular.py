@@ -3,7 +3,7 @@ import numpy as np
 import rasterio
 import scipy.ndimage as scimg
 
-pre_path  = '/media/nas3/Andreu/'
+pre_path = r'C:\Users\Andreu\Desktop\to_vito\to_vito'
 
 def toCircular(values, maxvalue = 365, rad = True):
     circvalue = (values*360)/maxvalue
@@ -18,52 +18,30 @@ def fromCircular(circvalues, maxvalue = 365, rad = True):
     value = (circvalues*maxvalue)/360
     return value
 
-def circularMean(circ_data, scal_max = 365, narm = True, rad=False, percentile = None, verbose=True):
+def circularMean(circ_data, scal_max = 365, narm = True):
     import math
 
-    if verbose:
-        print("USE IT ON DOYS ONLY (without pass them to radians)")
-    if rad: tocirc = circ_data
-    else:
-        tocirc = toCircular(circ_data, maxvalue=scal_max)
-    if narm: tocirc = tocirc[~np.isnan(tocirc)]
+    tocirc = toCircular(circ_data, maxvalue=scal_max)
+    if narm:
+        tocirc = tocirc[~np.isnan(tocirc)]
 
     if np.sum(tocirc) == 0:
         return 0
 
-    if percentile is not None:
-        pTop = np.percentile(tocirc, percentile)
-        pBot = np.percentile(tocirc, 100-percentile)
-        tocirc = tocirc[(tocirc <= pTop) & (tocirc >= pBot)]
-
     # is it radians? Let's suppose that not
-    x_mean = np.cos(tocirc).mean()
-    y_mean = np.sin(tocirc).mean()
+    x = np.cos(tocirc).mean()
+    y = np.sin(tocirc).mean()
 
-    r_mean = np.sqrt(x_mean**2 + y_mean**2)
-
-    x = x_mean/r_mean
-    y = y_mean/r_mean
-
-    arctan = np.abs(np.arctan2(y,x))
-    if y > 0 and x > 0:
-        theta_mean = arctan
-    if y > 0 and x < 0:
-        theta_mean = np.pi-arctan
-    if y < 0 and x < 0:
-        theta_mean = np.pi+arctan
-    if y < 0 and x > 0:
-        theta_mean = 2*np.pi-arctan
+    atan = np.arctan2(y,x)
 
     # back to doys
-    if rad:
-        back_scalar = theta_mean
-    else:
-        back_scalar = fromCircular(theta_mean, maxvalue=scal_max)
+    back_scalar = fromCircular(atan)
     return back_scalar
 
 
 if __name__ == "__main__":
+
+    print("USE IT ON DOYS ONLY (without pass them to radians)")
 
     path_wc_sos_filled = pre_path + '/post_processing/filling_gaps/wc_sos_los_filled.tif'
     path_wc_eos_filled = pre_path + '/post_processing/filling_gaps/wc_eos_los_filled.tif'
@@ -104,18 +82,30 @@ if __name__ == "__main__":
     data4_3x3 = scimg.generic_filter(data4, circularMean, footprint=w)
 
     # WC SOS
+    data1_3x3[data1_3x3 == 0] = np.nan
+    data1_3x3 += 365
+    data1_3x3[data1_3x3 > 365] -= 365
     data1_3x3[(data1_3x3 > 0) & (data1_3x3 < 1)] = 1
     data1_3x3[np.isnan(data1_3x3)] = 0
     data1_3x3 = data1_3x3.astype(np.int16)
     # WC EOS
+    data2_3x3[data2_3x3 == 0] = np.nan
+    data2_3x3 += 365
+    data2_3x3[data2_3x3 > 365] -= 365
     data2_3x3[(data2_3x3 > 0) & (data2_3x3 < 1)] = 1
     data2_3x3[np.isnan(data2_3x3)] = 0
     data2_3x3 = data2_3x3.astype(np.int16)
     # SC SOS
+    data3_3x3[data3_3x3 == 0] = np.nan
+    data3_3x3 += 365
+    data3_3x3[data3_3x3 > 365] -= 365
     data3_3x3[(data3_3x3 > 0) & (data3_3x3 < 1)] = 1
     data3_3x3[np.isnan(data3_3x3)] = 0
     data3_3x3 = data3_3x3.astype(np.int16)
     # SC EOS
+    data4_3x3[data4_3x3 == 0] = np.nan
+    data4_3x3 += 365
+    data4_3x3[data4_3x3 > 365] -= 365
     data4_3x3[(data4_3x3 > 0) & (data4_3x3 < 1)] = 1
     data4_3x3[np.isnan(data4_3x3)] = 0
     data4_3x3 = data4_3x3.astype(np.int16)
