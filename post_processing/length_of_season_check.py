@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 import rasterio
 
-pre_path = '/media/nas3/Andreu/'
+pre_path = r'C:\Users\Andreu\Desktop\to_vito\to_vito'
+
 path = pre_path + '/prod/outputs/wc_sos/s1_sos_50km.tif'
 path2 = pre_path + '/prod/outputs/wc_eos/s1_eos_50km.tif'
 path3 = pre_path + '/prod/outputs/sc_sos/s2_sos_50km.tif'
@@ -45,8 +46,8 @@ los_sc[los_sc > 365] -= 365
 # Writing this files
 with rasterio.open(los_path_wc, 'w', **profile) as dst:
     dst.write(los_wc, 1)
-with rasterio.open(los_path_wc, 'w', **profile) as dst:
-    dst.write(los_wc, 1)
+with rasterio.open(los_path_sc, 'w', **profile) as dst:
+    dst.write(los_sc, 1)
 
 # Checking for length of season problems
 # 1 for problems, 0 for correct length
@@ -60,8 +61,8 @@ mask_los_sc[los_sc > 330] = 1
 # Write the masks
 with rasterio.open(mask_los_path_wc, 'w', **profile) as dst:
     dst.write(los_wc, 1)
-with rasterio.open(mask_los_path_wc, 'w', **profile) as dst:
-    dst.write(los_wc, 1)
+with rasterio.open(mask_los_path_sc, 'w', **profile) as dst:
+    dst.write(los_sc, 1)
 
 # Delete points with strange length of season
 if destroy:
