@@ -83,29 +83,26 @@ if __name__ == "__main__":
 
     # WC SOS
     data1_3x3[data1_3x3 == 0] = np.nan
-    data1_3x3 += 365
-    data1_3x3[data1_3x3 > 365] -= 365
+    data1_3x3[data1_3x3 < 0] += 365
     data1_3x3[(data1_3x3 > 0) & (data1_3x3 < 1)] = 1
     data1_3x3[np.isnan(data1_3x3)] = 0
     data1_3x3 = data1_3x3.astype(np.int16)
     # WC EOS
     data2_3x3[data2_3x3 == 0] = np.nan
-    data2_3x3 += 365
-    data2_3x3[data2_3x3 > 365] -= 365
+    data2_3x3[data2_3x3 < 0] += 365
     data2_3x3[(data2_3x3 > 0) & (data2_3x3 < 1)] = 1
     data2_3x3[np.isnan(data2_3x3)] = 0
     data2_3x3 = data2_3x3.astype(np.int16)
     # SC SOS
     data3_3x3[data3_3x3 == 0] = np.nan
-    data3_3x3 += 365
-    data3_3x3[data3_3x3 > 365] -= 365
+    data3_3x3[data3_3x3 < 0] += 365
     data3_3x3[(data3_3x3 > 0) & (data3_3x3 < 1)] = 1
     data3_3x3[np.isnan(data3_3x3)] = 0
     data3_3x3 = data3_3x3.astype(np.int16)
     # SC EOS
     data4_3x3[data4_3x3 == 0] = np.nan
     data4_3x3 += 365
-    data4_3x3[data4_3x3 > 365] -= 365
+    data4_3x3[data4_3x3 < 0] += 365
     data4_3x3[(data4_3x3 > 0) & (data4_3x3 < 1)] = 1
     data4_3x3[np.isnan(data4_3x3)] = 0
     data4_3x3 = data4_3x3.astype(np.int16)
