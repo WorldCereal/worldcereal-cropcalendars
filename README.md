@@ -12,7 +12,7 @@
 This repo documents the workflow used to build the WorldCereal crop calendars and provides legacy outputs for reference.
 All official inputs and outputs are published on Zenodo and must be used when reproducing results.
 
-Primary dataset (inputs + outputs): DOI 10.5281/zenodo.17866271 (version v2, published Dec 7, 2025; last modified Jan 27, 2026 per Zenodo record you shared)
+Primary dataset (inputs + outputs): DOI 10.5281/zenodo.17866271 (version v2, published Dec 7, 2025; last modified Jan 27, 2026)
 
 ## Data access (required)
 
