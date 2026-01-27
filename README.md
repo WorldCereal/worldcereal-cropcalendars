@@ -54,19 +54,17 @@ but the authoritative data are on Zenodo.
 Total size: ~36.2 GB
 
 ```
-auxiliar_data.zip              md5: edcdf748755de3fdc4998ea0dfe3dd59
-doy_palette.qml                md5: 172e03ac430b60f5cf9ba42af89f13c0
+auxiliar_data.zip
+doy_palette.qml
 Global Crop Calendar Dataset Documentation.pdf
-                               md5: a4de1e3308d902c57e18298fd091cd86
-NDVI_hants.zip                 md5: d65a8c9a7d16d5b482525368910cdaf4
+NDVI_hants.zip
 Phase1_legacy_cropcalendars.zip
-                               md5: f69007a846daba161a427f8620db1c54
-S1_EOS_WGS84.tif               md5: 70d7974efa14064c805650b46c995f82
-S1_SOS_WGS84.tif               md5: 5e38e38953bae61fd2b6cea38baa2e91
-S2_EOS_WGS84.tif               md5: 9ac26f53e32de774d89390aa9bbe7eea
-S2_SOS_WGS84.tif               md5: 397c4d0d90426f3def01c4e55d9cc668
-summer_crops_dataset.csv       md5: 8c2338cc1e0c5c9507cd0872dce3a37c
-winter_crops_dataset.csv       md5: 45a9f9f7a2b38d957cb4345d45fb6ee5
+S1_EOS_WGS84.tif
+S1_SOS_WGS84.tif
+S2_EOS_WGS84.tif
+S2_SOS_WGS84.tif
+summer_crops_dataset.csv
+winter_crops_dataset.csv
 ```
 
 Optional checksum verification:
@@ -121,8 +119,8 @@ Recommended parameter mapping (paths):
 ```text
 file_path_      -> DATA_ROOT
 necessary_path  -> extracted auxiliar_data.zip folder
-results_path    -> local output folder (feature selection CSVs)
-model_output    -> local output folder (trained model JSONs)
+results_path    -> local output folder (feature selection)
+model_output    -> local output folder (trained model)
 ```
 
 What to edit in each script before running:
