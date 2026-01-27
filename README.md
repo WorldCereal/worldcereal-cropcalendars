@@ -3,10 +3,11 @@
 [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17866271.svg)](https://doi.org/10.5281/zenodo.17866271)
 [![Phase 2 paper (SSRN)](https://img.shields.io/badge/SSRN-5188749-blue)](https://ssrn.com/abstract=5188749)
 [![Phase 1 paper (GIScience & Remote Sensing)](https://img.shields.io/badge/GIScience%20%26%20Remote%20Sensing-2022-blue)](https://doi.org/10.1080/15481603.2022.2079273)
-[![CI](https://github.com/ucg-uv/worldcereal-cropcalendars/actions/workflows/ci.yml/badge.svg)](https://github.com/ucg-uv/worldcereal-cropcalendars/actions/workflows/ci.yml)
+[![CI](https://github.com/WorldCereal/worldcereal-cropcalendars/actions/workflows/ci.yml/badge.svg)](https://github.com/WorldCereal/worldcereal-cropcalendars/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![Conda Env](https://img.shields.io/badge/conda%20env-ewoc--calendars-3ddc84)
-![Last Commit](https://img.shields.io/github/last-commit/ucg-uv/worldcereal-cropcalendars)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Last Commit](https://img.shields.io/github/last-commit/WorldCereal/worldcereal-cropcalendars)
 
 This repo documents the workflow used to build the WorldCereal crop calendars and provides legacy outputs for reference.
 All official inputs and outputs are published on Zenodo and must be used when reproducing results.
@@ -146,8 +147,9 @@ Outputs:
 ### 2) Remote sensing processing (time-series smoothing)
 
 The MODIS CMG NDVI time series used in the paper are published on Zenodo as `NDVI_hants.zip`.
+This is the HANTS-smoothed output (already processed).
 Unzip it in the repo root so the stack lives under `NDVI_hants/`.
-If you need to reproduce the smoothing step, use the HANTS implementation in `src/rs_process.py`.
+If you need to reproduce the smoothing step from raw MODIS CMG, use the HANTS implementation in `src/rs_process.py`.
 
 MODIS CMG example (reads from repo root `NDVI_hants/`):
 
