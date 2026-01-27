@@ -1,0 +1,13 @@
+# Local Zenodo extraction workspace (example skeleton)
+data_root_example/**
+!data_root_example/
+!data_root_example/README.md
+!data_root_example/tree.txt
+!data_root_example/.gitkeep
+!data_root_example/auxiliar_data/
+!data_root_example/auxiliar_data/.gitkeep
+!data_root_example/NDVI_hants/
+!data_root_example/NDVI_hants/.gitkeep
+
+# macOS noise
+.DS_Store

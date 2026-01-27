@@ -1,0 +1,29 @@
+name: ewoc-calendars
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - cdsapi
+  - xarray
+  - python-cdo
+  - ipython
+  - netcdf4
+  - gdal
+  - scikit-image
+  - lmfit
+  - statsmodels
+  - scikit-learn
+  - seaborn
+  - geopandas
+  - rioxarray
+  - rasterio
+  - numba
+  - openeo
+  - spectral
+  - imageio
+  - pyproj
+  - magics
+  - pip
+  - pip:
+      - tqdm_joblib

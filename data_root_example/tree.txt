@@ -1,0 +1,13 @@
+DATA_ROOT/
+  auxiliar_data.zip
+  NDVI_hants.zip
+  summer_crops_dataset.csv
+  winter_crops_dataset.csv
+  S1_SOS_WGS84.tif
+  S1_EOS_WGS84.tif
+  S2_SOS_WGS84.tif
+  S2_EOS_WGS84.tif
+  Phase1_legacy_cropcalendars.zip
+  doy_palette.qml
+  auxiliar_data/
+  NDVI_hants/
