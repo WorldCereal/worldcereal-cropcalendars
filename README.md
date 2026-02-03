@@ -49,7 +49,7 @@ unzip DATA_ROOT/NDVI_hants.zip -d DATA_ROOT/NDVI_hants
 Note: You can keep the legacy `cropcalendars_phase1/` and `cropcalendars_phase2/` folders for quick inspection,
 but the authoritative data are on Zenodo.
 
-### Zenodo v2 file list (from record you shared)
+### Zenodo
 
 Total size: ~36.2 GB
 
