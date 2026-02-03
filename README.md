@@ -86,10 +86,11 @@ md5sum NDVI_hants.zip
 
 ## Workflow overview
 
-The workflow has two stages, in this order:
+The workflow has three stages, in this order:
 
-1) Climate modeling (SOS/EOS prediction)
-2) Remote sensing processing (time-series smoothing)
+1) Climate modeling (SOS/EOS prediction, first iteration)
+2) Remote sensing processing (HANTS + LSP extraction)
+3) Climate modeling again (SOS/EOS prediction with LSP predictors, second iteration)
 
 ## Environment setup
 
@@ -100,7 +101,7 @@ conda env create -f environment.yml
 conda activate ewoc-calendars
 ```
 
-### 1) Climate modeling (SOS/EOS prediction)
+### 1) Climate modeling (SOS/EOS prediction, first iteration)
 
 Scripts:
 
@@ -142,24 +143,126 @@ Outputs:
 - Feature importance CSVs
 - Predicted SOS/EOS values (per script logic)
 
-### 2) Remote sensing processing (time-series smoothing)
+These first-iteration calendars are used as the baseline window in the LSP step
+(they define the SOS/EOS range used to constrain the MODIS CMG time series).
 
-The MODIS CMG NDVI time series used in the paper are published on Zenodo as `NDVI_hants.zip`.
-This is the HANTS-smoothed output (already processed).
-Unzip it in the repo root so the stack lives under `NDVI_hants/`.
-If you need to reproduce the smoothing step from raw MODIS CMG, use the HANTS implementation in `src/rs_process.py`.
+### 2) Remote sensing processing (HANTS + LSP extraction)
 
-MODIS CMG example (reads from repo root `NDVI_hants/`):
+The MODIS CMG NDVI time series used in the paper are based on MODIS Aqua MYD09CMG.
+The HANTS-smoothed output is published on Zenodo as `NDVI_hants.zip`.
+If you need to reproduce the smoothing step from raw MODIS CMG, use `src/hants_3d.py`
+and point it to the HDF files (MYD09CMG).
+
+Example: run HANTS from MODIS CMG HDFs (outputs split into 20 COG chunks):
 
 ```bash
-python src/hants_3d.py --input-dir NDVI_hants --output outputs/hants_smoothed.npy
+DATA_ROOT=/path/to/zenodo_worldcereal \
+python src/hants_3d.py \
+  --modis-cmg \
+  --input-dir "$DATA_ROOT" \
+  --modis-pattern "MYD09CMG*.hdf" \
+  --split-count 20 \
+  --output-format cog \
+  --output-dir outputs/hants_cog \
+  --output-prefix hants_myd09cmg
 ```
 
-To apply HANTS to MODIS NDVI:
+To apply HANTS to MODIS NDVI (high level):
 
 1. Load the NDVI stack into a 3D array shaped `(nx, ny, nt)`.
 2. Call `HANTS_3D` from `src/rs_process.py`.
 3. Save the smoothed time series and proceed with feature extraction as in the modeling scripts.
+
+LSP extraction (uses MODIS CMG, crop masks, and the 1st-iteration calendars):
+
+- `src/lsp_world.py` reads MODIS CMG HDFs, applies QA masks, fills gaps, runs HANTS,
+  and then extracts SOS/EOS/POK from the smoothed NDVI.
+- The HANTS smoothing and LSP extraction are executed split-by-split (20 row-wise chunks)
+  to keep memory usage stable.
+- Environment variables used by `lsp_world.py` (defaults shown):
+  - `DATA_ROOT` (default: `data_root_example`)
+  - `MODIS_CMG_DIR` (default: `$DATA_ROOT/MODIS_CMG` or `$DATA_ROOT` if missing)
+  - `WC_SOS_PATH` (default: `$DATA_ROOT/S1_SOS_WGS84.tif`)
+  - `WC_EOS_PATH` (default: `$DATA_ROOT/S1_EOS_WGS84.tif`)
+  - `CROP_MASK_PATH` (default: `$DATA_ROOT/auxiliar_data/CropCoverFraction_50km_3857.tif`)
+  - `LSP_OUTPUT_DIR` (default: `outputs/lsp_world`)
+- `LSP_USE_TERRA` (set to `1` to also include MOD09CMG)
+  - `CONTINENTS_SHP` (default: `$DATA_ROOT/auxiliar_data/ne_10m_admin_0_sovereignty/ne_10m_admin_0_sovereignty.shp`)
+  - `LSP_VAL_RATIO` (default: `0.3`, continent-stratified split)
+  - `LSP_SPLIT_SEED` (default: `42`)
+
+Validation points (70/30 split by continent):
+
+- Place full points as GeoJSONs in `LSP_VALIDATION_DIR`:
+  - `maize_points.geojson`
+  - `wheat_points.geojson`
+- On first run, `lsp_world.py` generates:
+  - `maize_train.geojson` / `maize_validation.geojson`
+  - `wheat_train.geojson` / `wheat_validation.geojson`
+  using a 70/30 split stratified by continent.
+
+After LSP metrics are generated, re-run the XGBoost scripts (second iteration) to
+train the final SOS/EOS models using the LSP-derived predictors.
+
+### 3) Climate modeling (SOS/EOS prediction, second iteration)
+
+Re-run the same four scripts as in stage 1, now pointing to the LSP-derived inputs
+and features generated in stage 2.
+
+## End-to-end reproduction (paper pipeline)
+
+Prerequisites:
+
+- Zenodo dataset extracted to `DATA_ROOT`
+- MODIS CMG HDFs (MYD09CMG, optionally MOD09CMG) for the study period
+- Validation points:
+  - `maize_points.geojson`
+  - `wheat_points.geojson`
+  placed in `LSP_VALIDATION_DIR` (default: `$DATA_ROOT/validation`)
+
+Steps:
+
+1) First iteration (climate-only baseline)
+
+```bash
+python src/crop_calendars/scripts/wc_sos_xgboost_1st_lsp.py
+python src/crop_calendars/scripts/wc_eos_xgboost_1st_lsp.py
+python src/crop_calendars/scripts/sc_sos_xgboost_1st_lsp.py
+python src/crop_calendars/scripts/sc_eos_xgboost_1st_lsp.py
+```
+
+2) HANTS smoothing (MODIS CMG → HANTS)
+
+```bash
+DATA_ROOT=/path/to/zenodo_worldcereal \
+python src/hants_3d.py \
+  --modis-cmg \
+  --input-dir "$DATA_ROOT" \
+  --modis-pattern "MYD09CMG*.hdf" \
+  --split-count 20 \
+  --output-format cog \
+  --output-dir outputs/hants_cog \
+  --output-prefix hants_myd09cmg
+```
+
+3) LSP extraction (HANTS + phenology metrics)
+
+```bash
+DATA_ROOT=/path/to/zenodo_worldcereal \
+python src/lsp_world.py
+```
+
+4) Second iteration (climate + LSP)
+
+```bash
+python src/crop_calendars/scripts/wc_sos_xgboost_1st_lsp.py
+python src/crop_calendars/scripts/wc_eos_xgboost_1st_lsp.py
+python src/crop_calendars/scripts/sc_sos_xgboost_1st_lsp.py
+python src/crop_calendars/scripts/sc_eos_xgboost_1st_lsp.py
+```
+
+Note: the scripts in `src/crop_calendars/scripts/` require the path parameters
+to be updated before running (see the section above).
 
 ## Citation
 
