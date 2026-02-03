@@ -278,3 +278,8 @@ Phase 2:
 Moletto-Lobos, I. G., Franch, B., Guillem-Valls, A., Cyran, K., Kalecinski, N., Van Tricht, K., Vermote, E., Becker-Reshef, I.,
 Nair, S., Degerickx, J., Butsko, C., Szantoi, Z., de Vos, K., Whitcraft, A.
 Enhancing WorldCereal Crop Calendars with Land Surface Phenology and Machine Learning. Available at SSRN: https://ssrn.com/abstract=5188749
+
+Dataset:
+
+Moletto-Lobos, I., Franch, B., Guillem-Valls, A., Cyran, K., Kalecinski, N., Van Tricht, K., ... & Szantoi, Z. (2025).
+WorldCereal crop calendars. Zenodo. DOI: 10.5281/zenodo.17866271
