@@ -1,6 +1,6 @@
 # WorldCereal crop calendars
 
-[![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.17866271.svg)](https://doi.org/10.5281/zenodo.17866271)
+[![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.17849157.svg)](https://doi.org/10.5281/zenodo.17849157)
 [![Phase 2 paper (Ecological Informatics)](https://img.shields.io/badge/Ecological%20Informatics-2026-blue)](https://doi.org/10.1016/j.ecoinf.2026.103742)
 [![Phase 1 paper (GIScience & Remote Sensing)](https://img.shields.io/badge/GIScience%20%26%20Remote%20Sensing-2022-blue)](https://doi.org/10.1080/15481603.2022.2079273)
 [![CI](https://github.com/WorldCereal/worldcereal-cropcalendars/actions/workflows/ci.yml/badge.svg)](https://github.com/WorldCereal/worldcereal-cropcalendars/actions/workflows/ci.yml)
@@ -12,8 +12,7 @@
 This repo documents the workflow used to build the WorldCereal crop calendars and provides legacy outputs for reference.
 All official inputs and outputs are published on Zenodo and must be used when reproducing results.
 
-Primary dataset (inputs + outputs): DOI 10.5281/zenodo.17866271 (version v2, published Dec 7, 2025; last modified Jan 27, 2026)
-
+Primary dataset (inputs + outputs): DOI 10.5281/zenodo.17849157
 ## Data access (required)
 
 1. Download the dataset from Zenodo using the DOI above.
