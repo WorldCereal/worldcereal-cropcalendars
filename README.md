@@ -1,7 +1,7 @@
 # WorldCereal crop calendars
 
 [![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.17866271.svg)](https://doi.org/10.5281/zenodo.17866271)
-[![Phase 2 paper (SSRN)](https://img.shields.io/badge/SSRN-5188749-blue)](https://ssrn.com/abstract=5188749)
+[![Phase 2 paper (Ecological Informatics)](https://img.shields.io/badge/Ecological%20Informatics-2026-blue)](https://doi.org/10.1016/j.ecoinf.2026.103742)
 [![Phase 1 paper (GIScience & Remote Sensing)](https://img.shields.io/badge/GIScience%20%26%20Remote%20Sensing-2022-blue)](https://doi.org/10.1080/15481603.2022.2079273)
 [![CI](https://github.com/WorldCereal/worldcereal-cropcalendars/actions/workflows/ci.yml/badge.svg)](https://github.com/WorldCereal/worldcereal-cropcalendars/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
@@ -277,7 +277,8 @@ Phase 2:
 
 Moletto-Lobos, I. G., Franch, B., Guillem-Valls, A., Cyran, K., Kalecinski, N., Van Tricht, K., Vermote, E., Becker-Reshef, I.,
 Nair, S., Degerickx, J., Butsko, C., Szantoi, Z., de Vos, K., Whitcraft, A.
-Enhancing WorldCereal Crop Calendars with Land Surface Phenology and Machine Learning. Available at SSRN: https://ssrn.com/abstract=5188749
+Enhancing WorldCereal Crop Calendars with Land Surface Phenology and Machine Learning. Ecological Informatics.
+https://doi.org/10.1016/j.ecoinf.2026.103742
 
 Dataset:
 
